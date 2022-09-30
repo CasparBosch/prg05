@@ -20,3 +20,17 @@ Route::get('/welcome', function () {
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('/position1', function () {
+    return view('position1', [
+        'position1' => '<h1>Hello World</h1>'
+    ]);
+});
+
+Route::get('/position2', function () {
+    return view('position2');
+});
+
+Route::get('/position3', function () {
+    return view('position3');
+});
