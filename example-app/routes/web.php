@@ -21,11 +21,18 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/position1', function () {
-    return view('position1', [
-        'position1' => '<h1>Hello World</h1>'
-    ]);
-});
+ Route::get('/position1/{position}', function ($slug) {
+      $position1 = file_get_contents(__DIR__ . "/../resources/positions/{$slug}.html");
+
+     return view('position1', [
+
+         'position1' => $position1
+
+     ]);
+
+ });
+
+
 
 Route::get('/position2', function () {
     return view('position2');
@@ -34,3 +41,6 @@ Route::get('/position2', function () {
 Route::get('/position3', function () {
     return view('position3');
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
