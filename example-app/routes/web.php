@@ -21,14 +21,9 @@ Route::get('/', function () {
     return view('index');
 });
 
- Route::get('/position1/{position}', function ($slug) {
-      $position1 = file_get_contents(__DIR__ . "/../resources/positions/{$slug}.html");
+ Route::get('/position1', function () {
 
-     return view('position1', [
-
-         'position1' => $position1
-
-     ]);
+     return view('position1');
 
  });
 

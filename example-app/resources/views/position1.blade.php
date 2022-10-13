@@ -1,4 +1,4 @@
-<!doctype html> 
+<!doctype html>
 
 <title>prg05</title>
 <link rel="stylesheet" href="/css/app.css">
@@ -10,8 +10,6 @@
         <h1>
             <a href="/position1"> position 1</a>
         </h1>
-    
-    <?= $position1; ?>
 
 </article>
 
