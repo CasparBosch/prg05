@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Item;
+use App\Models\Position;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -12,74 +13,54 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index()  {
+        $positions = Position::orderBy('id', 'desc')->paginate(5);
+        return view('positions.index', compact('positions'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('positions.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'position_1' => 'required',
+            'position_2' => 'required',
+            'description' => 'required',
+        ]);
+        position::create($request->post());
+
+
+        return redirect()->route('positions.index')->with('success', 'Position has been created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Item $item)
+    public function show(position $position)  {
+        return view('positions.index',compact('position'));
+    }
+    public function edit(position $position)
     {
-        //
+        return view('positions.edit', compact('position'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Item $item)
+    public function update(Request $request, position $position)
     {
-        //
+        $request->validate([
+            'position_1' => 'required',
+            'position_2' => 'required',
+            'description' => 'required',
+        ]);
+
+        $position->update($request->all());
+
+        return redirect()->route('positions.index')->with('success', 'position Has Been updated successfully');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Item $item)
+    public function destroy(position $position)
     {
-        //
-    }
+        $position->delete();
+        return redirect()->route('positions.index')->with('success', 'position has been deleted successfully');
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Item $item)
-    {
-        //
     }
 }

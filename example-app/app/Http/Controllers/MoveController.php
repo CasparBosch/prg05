@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Item;
+use App\Models\Position;
 use Illuminate\Http\Request;
 
 class MoveController extends Controller
@@ -41,10 +41,10 @@ class MoveController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Position  $item
      * @return \Illuminate\Http\Response
      */
-    public function show(Item $item)
+    public function show(Position $item)
     {
         //
     }
@@ -52,10 +52,10 @@ class MoveController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Position  $item
      * @return \Illuminate\Http\Response
      */
-    public function edit(Item $item)
+    public function edit(Position $item)
     {
         //
     }
@@ -64,10 +64,10 @@ class MoveController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Position  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item)
+    public function update(Request $request, Position $item)
     {
         //
     }
@@ -75,10 +75,10 @@ class MoveController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Position  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    public function destroy(Position $item)
     {
         //
     }

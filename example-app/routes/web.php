@@ -18,25 +18,13 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/', function () {
-    return view('index');
+Route::get('/home', function () {
+    return view('home');
 });
 
- Route::get('/position1', function () {
+Route::resource('positions', ItemController::class);
 
-     return view('position1');
 
- });
-
-Route::resource('items', ItemController::class);
-
-Route::get('/position2', function () {
-    return view('position2');
-});
-
-Route::get('/position3', function () {
-    return view('position3');
-});
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
