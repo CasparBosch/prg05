@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 
@@ -22,8 +24,16 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::resource('positions', ItemController::class);
+//Route::resource('positions', ItemController::class);
 
+Route::middleware(['auth'])->group(function (){
+    Route::resource('positions', ItemController::class);
+});
+
+Route::middleware(['auth','role_admin'])->group(function (){
+    Route::resource('admin', admin::class);
+
+});
 
 Auth::routes();
 
