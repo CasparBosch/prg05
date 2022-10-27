@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Position;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -13,14 +15,29 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()  {
-        $positions = Position::orderBy('id', 'desc')->paginate(5);
-        return view('positions.index', compact('positions'));
+    public function index(Request $request)
+    {
+        if ($request->has('category')) {
+            $user_id=app('request')->user()->id;
+            $positions = Position::where('category_id', '=', $request->query('category'))->where('user_id',$user_id)->get();
+        } elseif(Auth::user()->role){
+            $positions = Position::all();
+        } else {
+            $user_id=app('request')->user()->id;
+
+            $positions = Position::where('user_id',$user_id )->get();
+        }
+
+        $categories = Category::all();
+
+        return view('positions.index', compact('positions', 'categories'));
+
     }
 
     public function create()
     {
-        return view('positions.create');
+        $categories = Category::all();
+        return view('positions.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -29,6 +46,7 @@ class ItemController extends Controller
             'position_1' => 'required',
             'position_2' => 'required',
             'description' => 'required',
+            'visibility' => 'required',
         ]);
         position::create($request->post());
 
@@ -50,6 +68,7 @@ class ItemController extends Controller
             'position_1' => 'required',
             'position_2' => 'required',
             'description' => 'required',
+            'visibility' => 'required',
         ]);
 
         $position->update($request->all());

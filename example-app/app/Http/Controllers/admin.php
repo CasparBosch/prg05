@@ -9,7 +9,7 @@ use App\Models\User;
 class admin extends Controller
 {
     public function index()  {
-        $users = user::orderBy('id', 'desc')->paginate(5);
+        $users = user::orderBy('id', 'desc')->paginate();
         return view('admin.index', compact('users'));
     }
 

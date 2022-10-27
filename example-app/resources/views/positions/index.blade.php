@@ -23,6 +23,15 @@
         </div>
     </div>
 <body>
+<div>
+    <a href="{{route('positions.index')}}" class="btn btn-primary btn-sm">Everything</a>
+
+    @foreach($categories as $category)
+        <a href="{{route('positions.index', ['category' => $category->id])}}"
+           class="btn btn-primary btn-sm">{{$category->name}}</a>
+    @endforeach
+
+</div>
 <table class="table table-bordered">
     <thead>
     <tr>
@@ -30,7 +39,7 @@
         <th>position 1</th>
         <th>position 2</th>
         <th>Description</th>
-        <th width="280px">Action</th>
+        <th> Visibility</th>
     </tr>
     </thead>
     <tbody>
@@ -40,6 +49,7 @@
             <td>{{ $position->position_1 }}</td>
             <td>{{ $position->position_2 }}</td>
             <td>{{ $position->description }}</td>
+            <td>{{ $position->visibility }}</td>
             <td>
                 <form action="{{ route('positions.destroy',$position->id) }}" method="Post">
                     <a class="btn btn-primary" href="{{ route('positions.edit',$position->id) }}">Edit</a>

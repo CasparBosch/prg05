@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $positions = Position::all();
+        $positions = Position::where('visibility', '=', '0')->get();
         return view('home', compact('positions'));
     }
 }
