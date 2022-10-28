@@ -17,20 +17,32 @@ class ItemController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->has('category')) {
-            $user_id=app('request')->user()->id;
-            $positions = Position::where('category_id', '=', $request->query('category'))->where('user_id',$user_id)->get();
-        } elseif(Auth::user()->role){
-            $positions = Position::all();
-        } else {
-            $user_id=app('request')->user()->id;
+        if (Auth::user()->role) {
+            if ($request->has('category')) {
+                $positions = Position::where('category_id', '=', $request->query('category'))->get();
+            } else {
+                $positions = Position::all();
+            }
+            $categories = Category::all();
 
-            $positions = Position::where('user_id',$user_id )->get();
+            return view('positions.index', compact('positions', 'categories'));
+
         }
 
-        $categories = Category::all();
+        if (Auth::user()) {
+            if ($request->has('category')) {
+                $user_id = app('request')->user()->id;
+                $positions = Position::where('category_id', '=', $request->query('category'))->where('user_id', $user_id)->get();
+            } else {
+                $user_id = app('request')->user()->id;
 
-        return view('positions.index', compact('positions', 'categories'));
+                $positions = Position::where('user_id', $user_id)->get();
+            }
+            $categories = Category::all();
+
+            return view('positions.index', compact('positions', 'categories'));
+        }
+
 
     }
 
@@ -46,7 +58,7 @@ class ItemController extends Controller
             'position_1' => 'required',
             'position_2' => 'required',
             'description' => 'required',
-            'visibility' => 'required',
+//            'visibility' => 'required',
         ]);
         position::create($request->post());
 
@@ -59,7 +71,8 @@ class ItemController extends Controller
     }
     public function edit(position $position)
     {
-        return view('positions.edit', compact('position'));
+        $categories = Category::all();
+        return view('positions.edit', compact('position', 'categories'));
     }
 
     public function update(Request $request, position $position)
@@ -68,7 +81,7 @@ class ItemController extends Controller
             'position_1' => 'required',
             'position_2' => 'required',
             'description' => 'required',
-            'visibility' => 'required',
+//            'visibility' => 'required',
         ]);
 
         $position->update($request->all());

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->longText('description');
             $table->string('img')->nullable();
             $table->timestamps();
-            $table->tinyInteger('visibility')->default('0');
+            $table->tinyInteger('visibility')->default('1');
 
         });
     }
