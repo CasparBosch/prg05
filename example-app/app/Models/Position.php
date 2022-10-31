@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class Position extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id','category_id','position_1', 'position_2', 'description', 'visibility'];
+    protected $fillable = ['user_id','category_id','position', 'move_1', 'description_1', 'move_2', 'description_2', 'visibility'];
 
     protected static function booted()
     {

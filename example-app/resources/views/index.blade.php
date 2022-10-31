@@ -11,8 +11,11 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">{{$position->description}}</h5>
-                    <p class="card-text">{{$position->position_1}}</p>
-                    <p class="card-text">{{$position->position_2}}</p>
+                    <p class="card-text">{{$position->position}}</p>
+                    <p class="card-text">{{$position->move_1}}</p>
+                    <p class="card-text">{{$position->description_1}}</p>
+                    <p class="card-text">{{$position->move_2}}</p>
+                    <p class="card-text">{{$position->description_2}}</p>
 
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>

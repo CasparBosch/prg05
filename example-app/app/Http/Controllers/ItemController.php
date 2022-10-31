@@ -55,9 +55,11 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'position_1' => 'required',
-            'position_2' => 'required',
-            'description' => 'required',
+            'position' => 'required',
+            'move_1' => 'required',
+            'description_1' => 'required',
+            'move_2' => 'required',
+            'description_2' => 'required',
 //            'visibility' => 'required',
         ]);
         position::create($request->post());
@@ -78,9 +80,11 @@ class ItemController extends Controller
     public function update(Request $request, position $position)
     {
         $request->validate([
-            'position_1' => 'required',
-            'position_2' => 'required',
-            'description' => 'required',
+            'position' => 'required',
+            'move_1' => 'required',
+            'description_1' => 'required',
+            'move_2' => 'required',
+            'description_2' => 'required',
 //            'visibility' => 'required',
         ]);
 

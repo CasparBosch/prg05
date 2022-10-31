@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left mb-2">
-                    <h2>Add Build</h2>
+                    <h2>Add Position</h2>
                 </div>
                 <div class="pull-right">
                     <a class="btn btn-primary" href="{{ route('positions.index') }}"> Back</a>
@@ -34,23 +34,50 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Position 1:</strong>
-                        <input type="text" name="position 1" class="form-control" placeholder="position 1">
-                        @error('position_1')
+                        <strong>Position:</strong>
+                        <input type="text" name="position" class="form-control" placeholder="position">
+                        @error('position')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Position 2:</strong>
-                        <input type="text" name="position 2" class="form-control" placeholder="position 2">
-                        @error('position_2')
+                        <strong>Move 1:</strong>
+                        <input type="text" name="move 1" class="form-control" placeholder="move 1">
+                        @error('move_1')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-                <label for="category_id" class="form-label">Choose Arctype:</label>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Description 1:</strong>
+                        <input type="text" name="description 1" class="form-control" placeholder="Description 1">
+                        @error('description_1')
+                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Move 2:</strong>
+                        <input type="text" name="move 2" class="form-control" placeholder="move 2">
+                        @error('move_2')
+                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Description 2:</strong>
+                        <input type="text" name="description 2" class="form-control" placeholder="Description 2">
+                        @error('description_2')
+                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <label for="category_id" class="form-label">Choose Category:</label>
                 <select id="category_id"
                         name="category_id"
                         class="@error('category_id') is-invalid @enderror form-select">
@@ -63,15 +90,8 @@
                 @error('category_id')
                 <span class="">{{$message}}</span>
                 @enderror
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Description:</strong>
-                        <input type="text" name="description" class="form-control" placeholder="Description">
-                        @error('description')
-                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
+
+
                 <button type="submit" class="btn btn-primary ml-3">Submit</button>
             </div>
         </form>

@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('category_id')->constrained();
-            $table->string('position_1');
-            $table->string('position_2');
-            $table->longText('description');
+            $table->string('position');
+            $table->string('move_1');
+            $table->longText('description_1');
+            $table->string('move_2');
+            $table->longText('description_2');
             $table->string('img')->nullable();
             $table->timestamps();
             $table->tinyInteger('visibility')->default('1');

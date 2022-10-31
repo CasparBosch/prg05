@@ -36,19 +36,23 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>position 1</th>
-        <th>position 2</th>
-        <th>Description</th>
-        <th> Visibility</th>
+        <th>Position</th>
+        <th>Move 1</th>
+        <th>Description 1</th>
+        <th>Move 2</th>
+        <th>Description 2</th>
+        <th>Visibility</th>
     </tr>
     </thead>
     <tbody>
     @foreach ($positions as $position)
         <tr>
             <td>{{ $position->id }}</td>
-            <td>{{ $position->position_1 }}</td>
-            <td>{{ $position->position_2 }}</td>
-            <td>{{ $position->description }}</td>
+            <td>{{ $position->position }}</td>
+            <td>{{ $position->move_1 }}</td>
+            <td>{{ $position->description_1 }}</td>
+            <td>{{ $position->move_2 }}</td>
+            <td>{{ $position->description_2 }}</td>
             <td>{{ $position->visibility }}</td>
             <td>
                 <form action="{{ route('positions.destroy',$position->id) }}" method="Post">
