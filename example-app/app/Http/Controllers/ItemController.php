@@ -77,10 +77,10 @@ class ItemController extends Controller
         return view('positions.edit', compact('position', 'categories'));
     }
 
-    public function update(Request $request, position $position)
+    public function update(Request $request, position $position )
     {
         $request->validate([
-            'position' => 'required',
+//            'position' => 'required',
             'move_1' => 'required',
             'description_1' => 'required',
             'move_2' => 'required',

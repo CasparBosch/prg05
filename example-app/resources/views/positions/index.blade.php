@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>All Positions made</h2>
+                <h2>Your Positions</h2>
             </div>
             <div class="pull-right mb-2">
                 <a class="btn btn-primary" href="{{ route('positions.create') }}"> Create Position</a>
@@ -23,6 +23,11 @@
         </div>
     </div>
 <body>
+<div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl px-3 py-2">
+    <form method="GET" action="#">
+        <input type="text"  placeholder="Search" class="bg-transparent placeholder-black font-semibold text-sm"></form>
+    </form>
+</div>
 <div>
     <a href="{{route('positions.index')}}" class="btn btn-primary btn-sm">Everything</a>
 
