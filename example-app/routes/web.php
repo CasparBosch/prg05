@@ -26,6 +26,8 @@ Route::get('/home', function () {
 
 //Route::resource('positions', ItemController::class);
 
+Route::post('position/search', [ItemController::class, 'search'])->name('position.search');
+
 Route::middleware(['auth'])->group(function (){
     Route::resource('positions', ItemController::class);
 });

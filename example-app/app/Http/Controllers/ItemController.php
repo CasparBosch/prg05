@@ -17,6 +17,7 @@ class ItemController extends Controller
      */
     public function index(Request $request)
     {
+
         if (Auth::user()->role) {
             if ($request->has('category')) {
                 $positions = Position::where('category_id', '=', $request->query('category'))->get();
@@ -44,6 +45,18 @@ class ItemController extends Controller
         }
 
 
+    }
+
+    public function search(Request $request)
+    {
+        $categories = Category::all();
+        $positions = Position::where('position', 'like', '%' . $request->search . '%')
+            ->orWhere('move_1', 'like', '%' . $request->search . '%')
+            ->orWhere('description_1', 'like', '%' . $request->search . '%')
+            ->orWhere('move_2', 'like', '%' . $request->search . '%')
+            ->orWhere('description_2', 'like', '%' . $request->search . '%')
+            ->get();
+        return view('positions.index', compact('positions','categories'));
     }
 
     public function create()

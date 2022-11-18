@@ -23,11 +23,7 @@
         </div>
     </div>
 <body>
-<div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl px-3 py-2">
-    <form method="GET" action="#">
-        <input type="text"  placeholder="Search" class="bg-transparent placeholder-black font-semibold text-sm"></form>
-    </form>
-</div>
+
 <div>
     <a href="{{route('positions.index')}}" class="btn btn-primary btn-sm">Everything</a>
 
@@ -37,6 +33,12 @@
     @endforeach
 
 </div>
+<form action="{{route('position.search')}}" method="post">
+    @csrf
+    <label for="search">Search:</label>
+    <input id="search" type="text" name="search">
+    <input name="submit" type="submit" class="btn btn-primary"/>
+</form>
 <table class="table table-bordered">
     <thead>
     <tr>
