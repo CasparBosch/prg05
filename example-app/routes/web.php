@@ -27,13 +27,20 @@ Route::get('/home', function () {
 
 Route::post('position/search', [ItemController::class, 'search'])->name('position.search');
 
-Route::middleware(['auth'])->group(function (){
-    Route::resource('positions', ItemController::class);
+Route::middleware(['auth','role_invalid'])->group(function (){
+    Route::get('/positions', [ItemController::class, 'index']);
     Route::get('/changeStatus', [itemController::class, 'updateVisibility'])->name('positions.visibility-update');
 });
+Route::middleware(['auth','role_valid'])->group(function (){
+    Route::resource('/positions', ItemController::class);
+    Route::get('/changeStatus', [itemController::class, 'updateVisibility'])->name('positions.visibility-update');
+});
+//Route::middleware(['auth'])->group(function (){
+//    Route::resource('positions', ItemController::class);
+//    Route::get('/changeStatus', [itemController::class, 'updateVisibility'])->name('positions.visibility-update');
+//});
 Route::middleware(['auth','role_admin'])->group(function (){
     Route::resource('admin', admin::class);
-
 });
 
 Auth::routes();

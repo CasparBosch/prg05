@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
 
-class invalidUser
+class validUser
 {
     /**
      * Handle an incoming request.
@@ -19,9 +19,8 @@ class invalidUser
     public function handle(Request $request, Closure $next)
     {
 
-        if ((Carbon::now()->timestamp - auth()->user()->created_at->timestamp) <= 84000) {
-            abort(403, 'Your account is younger than 1 day, please wait 24 hours after creation.');
-
+        if ((Carbon::now()->timestamp - auth()->user()->created_at->timestamp) >= 84000) {
+            abort(403);
         }
         return $next($request);
     }

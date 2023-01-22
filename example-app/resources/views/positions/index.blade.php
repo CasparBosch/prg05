@@ -23,23 +23,23 @@
                 <h2>Your Positions</h2>
             </div>
             <div class="pull-right mb-2">
-                @if((\Carbon\Carbon::now()->timestamp - auth()->user()->created_at->timestamp) >= 84000)
+{{--                @if(Auth::user()->role_invalid)--}}
 
                     <div class="pull-right mb-2">
                         <a class="btn btn-primary" href="{{ route('positions.create') }}"> Create Position</a>
                     </div>
-                @else
-                    <div class="pull-right mb-2">
-                        <button class="btn-secondary" onclick="myFunction()">Create Position</button>
-                    </div>
+{{--                @else--}}
+{{--                    <div class="pull-right mb-2">--}}
+{{--                        <button class="btn-secondary" onclick="myFunction()">Create Position</button>--}}
+{{--                    </div>--}}
 
-                    <script>
-                        function myFunction() {
-                            alert("Account is Younger than 1 day");
-                        }
-                    </script>
+{{--                    <script>--}}
+{{--                        function myFunction() {--}}
+{{--                            alert("Account is Younger than 1 day");--}}
+{{--                        }--}}
+{{--                    </script>--}}
 
-                @endif
+{{--                @endif--}}
             </div>
         </div>
     </div>

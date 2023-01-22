@@ -35,7 +35,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Position:</strong>
-                        <input type="text" name="position" class="form-control" placeholder="position">
+                        <input id="position" type="text" name="position" class="form-control" placeholder="position" value="{{ old('position') }}">
                         @error('position')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -44,7 +44,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Move 1:</strong>
-                        <input type="text" name="move 1" class="form-control" placeholder="move 1">
+                        <input id="move_1" type="text" name="move 1" class="form-control" placeholder="move 1" value="{{ old('move_1') }}">
                         @error('move_1')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -53,7 +53,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Description 1:</strong>
-                        <input type="text" name="description 1" class="form-control" placeholder="Description 1">
+                        <input id="description_1" type="text" name="description 1" class="form-control" placeholder="Description 1" value="{{ old('description_1') }}">
                         @error('description_1')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -62,7 +62,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Move 2:</strong>
-                        <input type="text" name="move 2" class="form-control" placeholder="move 2">
+                        <input id="move_2" type="text" name="move 2" class="form-control" placeholder="move 2" value="{{ old('move_2') }}">
                         @error('move_2')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -71,7 +71,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Description 2:</strong>
-                        <input type="text" name="description 2" class="form-control" placeholder="Description 2">
+                        <input id="description_2" type="text" name="description 2" class="form-control" placeholder="Description 2" value="{{ old('description_2') }}">
                         @error('description_2')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
