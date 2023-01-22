@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
@@ -24,19 +25,17 @@ Route::get('/home', function () {
     return view('home');
 });
 
-//Route::resource('positions', ItemController::class);
-
 Route::post('position/search', [ItemController::class, 'search'])->name('position.search');
 
 Route::middleware(['auth'])->group(function (){
     Route::resource('positions', ItemController::class);
+    Route::get('/changeStatus', [itemController::class, 'updateVisibility'])->name('positions.visibility-update');
 });
-
 Route::middleware(['auth','role_admin'])->group(function (){
     Route::resource('admin', admin::class);
 
 });
 
 Auth::routes();
-
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('home/search', [HomeController::class, 'search'])->name('home.search');

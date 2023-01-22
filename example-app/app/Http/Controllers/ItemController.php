@@ -18,6 +18,7 @@ class ItemController extends Controller
     public function index(Request $request)
     {
 
+
         if (Auth::user()->role) {
             if ($request->has('category')) {
                 $positions = Position::where('category_id', '=', $request->query('category'))->get();
@@ -73,7 +74,7 @@ class ItemController extends Controller
             'description_1' => 'required',
             'move_2' => 'required',
             'description_2' => 'required',
-//            'visibility' => 'required',
+            'visibility' => 'required',
         ]);
         position::create($request->post());
 
@@ -84,21 +85,28 @@ class ItemController extends Controller
     public function show(position $position)  {
         return view('positions.index',compact('position'));
     }
-    public function edit(position $position)
+    public function edit($id)
     {
-        $categories = Category::all();
+        $position = Position::find($id);
+        if (!auth()->user()->role == 1 && auth()->user()->id != $position->user_id) {
+
+            abort(403);
+
+        } else
+            $categories = Category::all();
+
         return view('positions.edit', compact('position', 'categories'));
     }
 
     public function update(Request $request, position $position )
     {
         $request->validate([
-//            'position' => 'required',
+            'position' => 'required',
             'move_1' => 'required',
             'description_1' => 'required',
             'move_2' => 'required',
             'description_2' => 'required',
-//            'visibility' => 'required',
+            'visibility' => 'required',
         ]);
 
         $position->update($request->all());
@@ -106,10 +114,23 @@ class ItemController extends Controller
         return redirect()->route('positions.index')->with('success', 'position Has Been updated successfully');
     }
 
-    public function destroy(position $position)
+    public function destroy($id)
     {
+        $position = Position::find($id);
+        if (!auth()->user()->role == 1 && auth()->user()->id != $position->user_id) {
+
+            abort(403);
+
+        } else
         $position->delete();
         return redirect()->route('positions.index')->with('success', 'position has been deleted successfully');
 
+    }
+    public function updateVisibility(Request $request)
+    {
+        $position = Position::find($request->position_id);
+        $position->visibility = $request->visibility;
+        $position->save();
+        return response()->json(['success' => 'Status change successfully.']);
     }
 }
