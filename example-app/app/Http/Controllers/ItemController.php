@@ -108,6 +108,12 @@ class ItemController extends Controller
             'description_2' => 'required',
             'visibility' => 'required',
         ]);
+        if (!auth()->user()->role == 1 && auth()->user()->id != $position->user_id) {
+
+            abort(403);
+
+        } else
+            $categories = Category::all();
 
         $position->update($request->all());
 
